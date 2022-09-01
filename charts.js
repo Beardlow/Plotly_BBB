@@ -66,9 +66,9 @@ function buildCharts(sample) {
     var sample1 = sampleArray[0];
     var metadata = metaArray[0];
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-    var otuID = sampleData.otu_ids;
-    var otuLabels = sampleData.otu_labels;
-    var sampVal = sampleData.sample_values;
+    var otuID = sample1.otu_ids;
+    var otuLabels = sample1.otu_labels;
+    var sampVal = sample1.sample_values;
     var frequency = parseFloat(metadata.wfreq);
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
