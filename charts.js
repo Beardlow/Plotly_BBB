@@ -64,6 +64,7 @@ function buildCharts(sample) {
     var metaArray = data.metadata.filter(sampleObj => sampleObj.id == sample);
     //  5. Create a variable that holds the first sample in the array.
     var sample1 = sampleArray[0];
+    console.log(sample1)
     var metadata = metaArray[0];
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otuID = sample1.otu_ids;
@@ -76,7 +77,7 @@ function buildCharts(sample) {
     //var sortedotuIDs = otuID.slice(0,10).map(otuIDs => `OTU# ${otuID}`).reverse();
     //var sortedotuLabels = (sampleData.sort((a,b) => a.otu_labels - b.otu_labels).reverse()).slice(0,9);
     var yticks = otuID.slice(0,10).map(otuIDs => `OTU# ${otuID}`).reverse();
-
+    //console.log(yticks)
     // 8. Create the trace for the bar chart. 
     var barData = [{
       x: sampVal.slice(0,10).reverse(),
@@ -100,7 +101,7 @@ function buildCharts(sample) {
       mode: 'markers',
       marker: {
         size: sampVal,
-        color: outID,
+        color: otuID,
         colorscale: 'Earth'
       },
       hovertext: otuLabels,
