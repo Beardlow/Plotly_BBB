@@ -99,7 +99,7 @@ function buildCharts(sample) {
       type: 'bubble',
       mode: 'markers',
       marker: {
-        size: sampleVal,
+        size: sampVal,
         color: outID,
         colorscale: 'Earth'
       },
