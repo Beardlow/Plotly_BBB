@@ -64,7 +64,7 @@ function buildCharts(sample) {
     var metaArray = data.metadata.filter(sampleObj => sampleObj.id == sample);
     //  5. Create a variable that holds the first sample in the array.
     var sample1 = sampleArray[0];
-    console.log(sample1)
+    //console.log(sample1)
     var metadata = metaArray[0];
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otuID = sample1.otu_ids;
@@ -76,15 +76,15 @@ function buildCharts(sample) {
     //  so the otu_ids with the most bacteria are last. 
     //var sortedotuIDs = otuID.slice(0,10).map(otuIDs => `OTU# ${otuID}`).reverse();
     //var sortedotuLabels = (sampleData.sort((a,b) => a.otu_labels - b.otu_labels).reverse()).slice(0,9);
-    var yticks = otuID.slice(0,10).map(otuIDs => `OTU# ${otuID}`).reverse();
-    //console.log(yticks)
+    var yticks = otuID.slice(0,10).map(otuIDs => `OTU# ${otuIDs}`).reverse();
+    console.log(yticks)
     // 8. Create the trace for the bar chart. 
     var barData = [{
-      x: sampVal.slice(0,10).reverse(),
+      x: sampVal.slice(0, 10).reverse(),
       y: yticks,
       type: 'bar',
       orientation: 'h',
-      hovertext: otuLabels.slice(0,10).reverse()
+      hovertext: otuLabels.slice(0, 10).reverse()
     }];
     // 9. Create the layout for the bar chart. 
     var barLayout = {
@@ -113,6 +113,30 @@ function buildCharts(sample) {
     };
 
     Plotly.newPlot('bubble', bubbleData, bubbleLayout);
+
+    var gaugeData = [{
+      value: frequency,
+      title: {text: "Belly Button Washing Frequency <br> (Times per Week)"},
+      type: "indicator",
+      mode: "gauge+nmuber",
+      gauge: {
+        axis: {range: [null, 10]},
+        bar: {color: "black"},
+        steps: [
+          {range: [0,2], color: "red"},
+          {range: [2, 4], color: "orange" },
+          {range: [4, 6], color: "yellow" },
+          {range: [6, 8], color: "lightgreen" },
+          {range: [8, 10], color: "green" }
+        ]
+      }
+    }];
+    var gaugeLay = { 
+      width: 500, 
+      height: 450, 
+      margin: { t: 10, b: 10 } 
+    };
+    Plotly.newPlot("gauge", gaugeData, gaugeLay);
 
   });
 }
